@@ -1,4 +1,4 @@
-package animal;
+package data;
 
 public enum Commands {
     ADD,

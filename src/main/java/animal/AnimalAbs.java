@@ -1,6 +1,6 @@
 package animal;
 
-public class Animal {
+public abstract class AnimalAbs {
     protected String name;
     protected int age;
     protected int weight;
@@ -9,20 +9,18 @@ public class Animal {
 
     public String calculate (int age){
 
-        if (age == 1)
-        {godLet="год";}
-        else
-        { if (age>1 && age<5)
-        {godLet="года";}
-            else
-            {if (age>4 && age<21)
-            {godLet="лет";}
-            else {System.out.println("Не бывает таких старых животных");}}
-
+        if (age == 1) {
+            godLet="год";
         }
-
-
-
+        else if (age>1 && age<5) {
+            godLet="года";
+        }
+        else if (age>4 && age<21) {
+            godLet="лет";
+        }
+        else {
+            System.out.println("Не бывает таких старых животных");
+        }
 
         return godLet;
     }
