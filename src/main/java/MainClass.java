@@ -20,7 +20,6 @@ public class MainClass {
             System.out.println("Выберите команду add/list/exit");
             choose = scan.next().trim().toUpperCase(Locale.ROOT);
 
-            // test code
             Commands[] commands = Commands.values();
             String finalChoose = choose;
             boolean isCommandPresent = Arrays.stream(commands).anyMatch(command -> command.name().equals(finalChoose));
@@ -32,68 +31,46 @@ public class MainClass {
 
             Commands command = Commands.valueOf(choose);
 
-
-
             switch (command){
                 case ADD:
 
                     AnimalAbs animal=null;
-                    while (animal ==null){
-                        System.out.println("Какое животное вы хотите? Cat, Dog, Duck?");
-                        String animalType = scan.next().trim().toLowerCase(Locale.ROOT);
 
-                        ArrayList<String> animalTypesList = new ArrayList<>();
-                        animalTypesList.add(animalType);
+                    System.out.println("Какое животное вы хотите? Cat, Dog, Duck?");
+                    String animalType = scan.next().trim().toLowerCase(Locale.ROOT);
 
-                        boolean isAnimalTypePresent = false;
-                        for(String n:animalTypesList) {
-                            if(animalType.equals("cat")||animalType.equals("dog")||animalType.equals("duck")) {
-                                isAnimalTypePresent = true;
-                                break;
-                            }
-                        }
-
-                        if(!isAnimalTypePresent) {
+                    while (!((animalType.equals("cat"))|(animalType.equals("dog"))|(animalType.equals("duck")))) {
                             System.out.println(String.format("Такого животного %s не существует", animalType));
-                            continue;
+                            System.out.println("Какое животное вы хотите? Cat, Dog, Duck?");
+                            animalType = scan.next().trim().toLowerCase(Locale.ROOT);
+
                         }
 
-
-
-
-                        switch(animalType) {
+                    switch(animalType) {
                             case "cat": {
                                 animal=new Cat();
                                 generateAnimal(animal,scan);
+                                animals.add(animal);
                                 break;
                             }
                             case "dog": {
                                 animal=new Dog();
                                 generateAnimal(animal,scan);
+                                animals.add(animal);
                                 break;
                             }
                             case "duck": {
                                 animal=new Duck();
                                 generateAnimal(animal,scan);
+                                animals.add(animal);
                                 Duck duck = new Duck();
                                 duck.fly();
                                 break;
                             }
-
                         }
-
-
-                        animals.add(animal);
-
-
-                    }
-
-
                     animal.say();
-
-                    
-
                     break;
+
                 case LIST:
                     System.out.println("list");
                     for(int i = 0; i<animals.size(); i++) {
@@ -101,6 +78,7 @@ public class MainClass {
                         System.out.println();
                     }
                     break;
+
                 case EXIT:
                     System.out.println("Goodbye");
                     System.exit(0);
