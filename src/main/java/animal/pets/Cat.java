@@ -1,10 +1,11 @@
-package animal;
+package animal.pets;
 
-public class Cat extends Animal{
+import animal.AnimalAbs;
+
+public class Cat extends AnimalAbs {
 
     @Override
     public void say() {
-        super.say();
         System.out.println("Мяу");
     }
 }
